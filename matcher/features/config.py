@@ -11,7 +11,7 @@ class Config:
     feature_processors: Tuple[FeatureProcessor] = (
         MatchingBertFeature(
             ["matching_bert_score"], TEXT_DEBERTA_MATCHER
-        )
+        ),
     )
 
     @property
