@@ -1,6 +1,8 @@
 import logging.config
 
 
+TEXT_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
+
 
 
 # log
