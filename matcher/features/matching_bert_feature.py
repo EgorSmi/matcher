@@ -18,6 +18,7 @@ class MatchingBertFeature(FeatureProcessor):
         model = DebertaV2ForSequenceClassification.from_pretrained(pretrained_model)
         self.scorer = BertScorer(model)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model)
+        self.batch_size = 32
 
     @property
     def processor_name(self) -> str:
@@ -31,7 +32,7 @@ class MatchingBertFeature(FeatureProcessor):
     def compute_pair_feature(self, df: pd.DataFrame) -> pd.DataFrame:
         feature_df = df[["name_for_bert1", "name_for_bert2"]]
         dataset = NamingMatchingDataset(feature_df, self.tokenizer, "name_for_bert1", "name_for_bert2")
-        dataloader = DataLoader(dataset, batch_size=Config.batch_size, collate_fn=Collator(self.tokenizer), shuffle=False)
+        dataloader = DataLoader(dataset, batch_size=self.batch_size, collate_fn=Collator(self.tokenizer), shuffle=False)
         predicted_probas = self.scorer.predict_proba(dataloader)
         df["matching_bert_score"] = predicted_probas
         return df
