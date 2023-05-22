@@ -8,10 +8,8 @@ class Collator:
         self.max_input_length = 512
 
     def __call__(self, batch):
-        text = zip(*batch)
-
         input_encoding = self.tokenizer(
-            text,
+            batch,
             padding='longest',
             max_length=self.max_input_length,
             truncation=True,
