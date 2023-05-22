@@ -4,8 +4,8 @@ import pandas as pd
 
 
 class FeatureProcessor(ABC):
-    def __init__(self):
-        pass
+    def __init__(self, feature_names: List[str]):
+        self.feature_names = feature_names
 
     @property
     def processor_name(self) -> str:

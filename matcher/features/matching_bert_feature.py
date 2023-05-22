@@ -1,4 +1,5 @@
 import pandas as pd
+from typing import List
 from torch.utils.data.dataloader import DataLoader
 from transformers import AutoTokenizer, DebertaV2ForSequenceClassification
 
@@ -12,8 +13,8 @@ from matcher.models.matching_bert.config import Config
 
 
 class MatchingBertFeature(FeatureProcessor):
-    def __init__(self, pretrained_model: str):
-        super().__init__()
+    def __init__(self, feature_names: List[str], pretrained_model: str):
+        super().__init__(feature_names)
         model = DebertaV2ForSequenceClassification.from_pretrained(pretrained_model)
         self.scorer = BertScorer(model)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model)
@@ -24,12 +25,12 @@ class MatchingBertFeature(FeatureProcessor):
 
     def preprocess(self, df: pd.DataFrame) -> pd.DataFrame:
         df = super().preprocess(df)
-        df["name"] = df["name"].map(preprocess)
+        df["name_for_bert"] = df["name"].map(preprocess)
         return df
 
     def compute_pair_feature(self, df: pd.DataFrame) -> pd.DataFrame:
-        feature_df = df[["name1", "name2"]]
-        dataset = NamingMatchingDataset(df, self.tokenizer)
+        feature_df = df[["name_for_bert1", "name_for_bert2"]]
+        dataset = NamingMatchingDataset(feature_df, self.tokenizer, "name_for_bert1", "name_for_bert2")
         dataloader = DataLoader(dataset, batch_size=Config.batch_size, collate_fn=Collator(self.tokenizer), shuffle=False)
         predicted_probas = self.scorer.predict_proba(dataloader)
         df["matching_bert_score"] = predicted_probas

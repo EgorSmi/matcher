@@ -23,7 +23,11 @@ class FeatureRegister:
             "variantid2",
         ]
 
-    def feature_df_prepare(self, df: pd.DataFrame):
+    @property
+    def features(self):
+        return self.config.config_feature_names
+
+    def raw_df_prepare(self, df: pd.DataFrame):
         assert len(set(self.raw_key_columns) & set(df.columns)) == len(set(self.raw_key_columns))
         for processor in self.feature_processors:
             LOG.debug(f"{processor.processor_name} preparing single DataFrame..")
@@ -34,4 +38,11 @@ class FeatureRegister:
 
     def compute_pair_features(self, df: pd.DataFrame):
         assert len(set(self.pair_key_columns) & set(df.columns)) == len(set(self.pair_key_columns))
-
+        for processor in self.feature_processors:
+            LOG.debug(f"{processor.processor_name} preparing pair feature DataFrame..")
+            input_df_columns = set(df.columns)
+            df = processor.compute_pair_feature(df)
+            LOG.debug(f"{processor.processor_name} has finished pair feature preparation..")
+            assert len(input_df_columns) + len(set(processor.feature_names)) == len(set(df.columns))
+        assert len(set(self.pair_key_columns) & set(df.columns)) == len(set(self.pair_key_columns))
+        return df[[*self.pair_key_columns, *self.features]]

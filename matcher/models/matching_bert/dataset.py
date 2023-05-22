@@ -4,9 +4,9 @@ from transformers import AutoTokenizer
 
 
 class NamingMatchingDataset(Dataset):
-    def __init__(self, text_df: pd.DataFrame, tokenizer: AutoTokenizer):
-        self.name1 = text_df["name1"].tolist()
-        self.name2 = text_df["name2"].tolist()
+    def __init__(self, text_df: pd.DataFrame, tokenizer: AutoTokenizer, name1_alias: str, name2_alias: str):
+        self.name1 = text_df[name1_alias].tolist()
+        self.name2 = text_df[name2_alias].tolist()
         self.tokenizer = tokenizer
 
     def __len__(self):
