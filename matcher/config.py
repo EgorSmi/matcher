@@ -27,7 +27,7 @@ LOGGING_CONFIG = {
     },
     "loggers": {
         "matcher": {
-            "level": "DEBUG",
+            "level": "INFO",
             "handlers": [
                 "default",
             ],
