@@ -13,7 +13,7 @@ class CatboostConfig:
 
     custom_metric: str = "PRAUC"
     eval_metric: str = "PRAUC"
-    loss_function: str = "LogLoss"
+    loss_function: str = "Logloss"
     iterations: int = 100
     learning_rate: float = 0.01
     l2_leaf_reg: str = 100.0
