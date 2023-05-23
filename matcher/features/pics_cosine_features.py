@@ -6,12 +6,13 @@ from sklearn.neighbors import BallTree
 from scipy.spatial.distance import cdist
 
 from .feature_processor import FeatureProcessor
+from matcher.config import PICS_COSINE_BALL_TREE_PATH
 
 
 class PicsCosineFeatures(FeatureProcessor):
     def __init__(self, feature_names: List[str], similarity_threshold: float):
         super().__init__(feature_names)
-        with open('../models/pics_cosine_features/ball_tree.pkl', 'rb') as f:
+        with open(PICS_COSINE_BALL_TREE_PATH, 'rb') as f:
             self.useless_pics_tree = pickle.load(f)
         self.similarity_threshold = similarity_threshold
 
@@ -21,7 +22,6 @@ class PicsCosineFeatures(FeatureProcessor):
 
     def preprocess(self, df: pd.DataFrame) -> pd.DataFrame:
         df = super().preprocess(df)
-        # df["name_for_bert"] = df["name"].map(preprocess)
         return df
 
     def compute_pair_feature(self, df: pd.DataFrame) -> pd.DataFrame:
