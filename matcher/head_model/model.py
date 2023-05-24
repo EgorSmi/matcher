@@ -62,7 +62,7 @@ class CatboostModel:
         if self.model is None:
             raise RuntimeError("Load model at first!")
 
-        return self.model.predict_proba(pool)
+        return self.model.predict(pool, prediction_type="Probability")[:, 1]
 
     def get_feature_importance(self, pool: Pool):
         if self.model is None:
