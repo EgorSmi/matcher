@@ -3,6 +3,8 @@ import pandas as pd
 
 from matcher.feature_register import FeatureRegister
 from matcher.features.config import Config
+from matcher.config import HEAD_MODEL_FILENAME, SCORE_COLUMN
+from matcher.head_model.catboost_scorer import CatBoostScorer
 
 
 def prepare_features_df(
@@ -34,10 +36,17 @@ def prepare_features_df(
     return test_features_prepared
 
 
-
-def main(test_pairs_filename: str, test_data_filename: str):
-    pass
-
+def main(
+    test_pairs_filename: str, test_data_filename: str,
+    submission_filename: str = "submission.csv",
+):
+    output_columns = ["variantid1", "variantid2", SCORE_COLUMN]
+    test_dataset = prepare_features_df(test_pairs_filename, test_data_filename)
+    config = Config()
+    head_model = CatBoostScorer(HEAD_MODEL_FILENAME)
+    scores = head_model.get_scores(test_dataset, config.config_feature_names)
+    test_dataset[SCORE_COLUMN] = scores
+    test_dataset[output_columns].to_csv(submission_filename, index=False)
 
 
 if __name__ == "__main__":

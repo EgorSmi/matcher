@@ -1,8 +1,11 @@
 import logging.config
 
-
+# models
 TEXT_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
+HEAD_MODEL_FILENAME = "head_catboost_model.cbm"
 
+# columns
+SCORE_COLUMN = "scores"
 
 
 # log
