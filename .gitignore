@@ -149,3 +149,4 @@ cython_debug/
 
 /mlruns
 /tmp-prepare-wheels-requirements.txt
+/matcher/models/pics_cosine_features/ball_tree.pkl

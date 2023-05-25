@@ -3,6 +3,8 @@ import logging.config
 # models
 TEXT_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
 HEAD_MODEL_FILENAME = "head_catboost_model.cbm"
+PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
+PICS_COSINE_BALL_TREE_PATH = '../models/pics_cosine_features/ball_tree.pkl'
 
 # columns
 SCORE_COLUMN = "target"
