@@ -9,7 +9,7 @@
 4) mkdir solution-env
 5) tar -xzf solution-env.tar.gz -C solution-env
 6) source solution-env/bin/activate
-7) run.sh
+7) bash matcher/run.sh
 
 
 На выходе вы получите файл submission.csv со скорами.
