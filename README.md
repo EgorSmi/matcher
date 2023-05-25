@@ -1,15 +1,15 @@
 # Uranus Matcher
+Мы предоставляем файл solution.tar.gz с окружением solution-env.tar.gz и кодом проекта matcher
 
 ## Как запускать решение
 
-Мв предоставляем файл solution-env.tar.gz, который нужно распаковать и активировать
-
-## Последовательность действий
-1) mkdir solution-env
-2) tar -xzf solution-env.tar.gz -C solution-env
-3) source solution-env/bin/activate
-4) conda-unpack
-5) python matcher/pipeline.py main "test_pairs.parquet" "test_data.parquet"
+1) mkdir solution
+2) tar -xzf solution.tar.gz -C solution
+3) cd solution 
+4) mkdir solution-env
+5) tar -xzf solution-env.tar.gz -C solution-env
+6) source solution-env/bin/activate
+7) run.sh
 
 
 На выходе вы получите файл submission.csv со скорами.
