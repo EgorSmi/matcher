@@ -14,5 +14,5 @@ class CatBoostScorer:
             data=df[feature_names],
             feature_names=feature_names,
         )
-        preds = self.model.predict_proba(pool)[:, 1]
+        preds = self.model.predict(pool, prediction_type="Probability")[:, 1]
         return preds
