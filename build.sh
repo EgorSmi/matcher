@@ -2,11 +2,8 @@
 export ENVIRONMENT_NAME=solution-env
 export ENVIRONMENT_ARCHIVE=solution-env.tar.gz
 
-conda init bash && source ~/.bashrc
 conda create -n ENVIRONMENT_NAME python=3.7
 
 conda activate ENVIRONMENT_NAME
 pip install .
-conda install conda-pack
-conda install -c conda-forge conda-pack
 conda-pack -n ENVIRONMENT_NAME -o ENVIRONMENT_ARCHIVE
