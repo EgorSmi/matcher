@@ -5,6 +5,10 @@ TEXT_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
 HEAD_MODEL_FILENAME = "head_catboost_model.cbm"
 PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
 PICS_COSINE_BALL_TREE_PATH = '../models/pics_cosine_features/ball_tree.pkl'
+ATTRS_BERT_COSINE_MODEL = 'all-MiniLM-L6-v2'
+ATTRS_BERT_COSINE_BATCH_SIZE = 256
+ATTRS_BERT_COSINE_KEYS_THRESHOLD = 0.06
+ATTRS_BERT_COSINE_VALUES_THRESHOLD = 0.06
 
 # columns
 SCORE_COLUMN = "target"
