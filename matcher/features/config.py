@@ -22,6 +22,9 @@ class Config:
         PicsCosineFeatures(
             ['pics_norm_sum', 'pics_min'], PICS_COSINE_SIMILARITY_THRESHOLD
         ),
+        SameColorFeatures(
+            ["same_colorname", "same_hex", "same_rgb"]
+        )
     )
 
     @property
