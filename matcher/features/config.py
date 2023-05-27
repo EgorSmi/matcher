@@ -4,6 +4,7 @@ from .feature_processor import FeatureProcessor
 from .matching_bert_feature import MatchingBertFeature
 from .simple_categories_features import SimpleCategoriesFeatures
 from .pics_cosine_features import PicsCosineFeatures
+from .color_features import SameColorFeatures
 from matcher.config import TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD
 
 
