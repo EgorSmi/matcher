@@ -6,9 +6,9 @@ HEAD_MODEL_FILENAME = "head_catboost_model.cbm"
 PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
 PICS_COSINE_BALL_TREE_PATH = "ball_tree.pkl"
 ATTRIBUTE_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
-RUS_TO_ENG_COLORS = "matcher/dict_data/rus_to_eng_colors.json"
-NAME_TO_HEX = "matcher/dict_data/name_to_hex_dict.json"
-NEEDED_ATTRS = "matcher/dict_data/needed_attrs_test_and_freq500.json"
+RUS_TO_ENG_COLORS = "matcher/matcher/dict_data/rus_to_eng_colors.json"
+NAME_TO_HEX = "matcher/matcher/dict_data/name_to_hex_dict.json"
+NEEDED_ATTRS = "matcher/matcher/dict_data/needed_attrs_test_and_freq500.json"
 
 # columns
 SCORE_COLUMN = "target"
