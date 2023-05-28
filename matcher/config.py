@@ -5,6 +5,7 @@ TEXT_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
 HEAD_MODEL_FILENAME = "head_catboost_model.cbm"
 PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
 PICS_COSINE_BALL_TREE_PATH = "ball_tree.pkl"
+ATTRIBUTE_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
 
 # columns
 SCORE_COLUMN = "target"

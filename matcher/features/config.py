@@ -5,7 +5,8 @@ from .matching_bert_feature import MatchingBertFeature
 from .simple_categories_features import SimpleCategoriesFeatures
 from .pics_cosine_features import PicsCosineFeatures
 from .color_features import SameColorFeatures
-from matcher.config import TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD
+from .matching_attribute_bert import AttrMatchingBertFeature
+from matcher.config import TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER
 
 
 @dataclass
@@ -21,11 +22,14 @@ class Config:
             ["matching_bert_score"], TEXT_DEBERTA_MATCHER
         ),
         PicsCosineFeatures(
-            ['pics_norm_sum', 'pics_min'], PICS_COSINE_SIMILARITY_THRESHOLD
+            ["pics_norm_sum", "pics_min"], PICS_COSINE_SIMILARITY_THRESHOLD
         ),
         SameColorFeatures(
-            ["same_colorname", "same_hex", "same_rgb"]
-        )
+            ["same_colorname", "same_hex", "same_rgb", "color_difference_ciede"]
+        ),
+        AttrMatchingBertFeature(
+            ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, "dict_data/needed_attrs_test_and_freq500.json",
+        ),
     )
 
     @property

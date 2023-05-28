@@ -8,7 +8,6 @@ from matcher.utils.preprocess import preprocess
 from matcher.models.matching_bert.scorer import BertScorer
 from matcher.models.matching_bert.dataset import NamingMatchingDataset
 from matcher.models.matching_bert.collator import Collator
-from matcher.models.matching_bert.config import Config
 
 
 

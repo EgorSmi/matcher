@@ -18,7 +18,9 @@ class Collator:
         )
         input_ids, attention_mask = input_encoding.input_ids, input_encoding.attention_mask
         token_type_ids_idx = torch.arange(0, attention_mask.shape[1])
-        sep_idx = ((input_ids == self.tokenizer.sep_token_id).nonzero(as_tuple=True)[1])[::2].view(-1, 1)
+        salt_raw = torch.tensor([self.tokenizer.sep_token_id] * attention_mask.shape[0]).view(-1, 1)
+        salt_input_ids = torch.concat([input_ids, salt_raw], axis=1)
+        sep_idx = torch.argmax((salt_input_ids == self.tokenizer.sep_token_id).to(dtype=torch.int), dim=-1).view(-1, 1)
         condition = token_type_ids_idx <= sep_idx
         token_type_ids = torch.where(condition, 0, 1)
         return {
