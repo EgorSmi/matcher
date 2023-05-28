@@ -7,7 +7,6 @@ from .pics_cosine_features import PicsCosineFeatures
 from .color_features import SameColorFeatures
 from .bert64_embedding_features import Bert64EmbeddingFeatures
 from .resnet128_embedding_features import Resnet128EmbeddingFeatures
-from .feature_processor import FeatureProcessor
 from .matching_attribute_bert import AttrMatchingBertFeature
 from matcher.config import (
     TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
@@ -52,6 +51,7 @@ class Config:
         feature_names = []
         for processor in self.feature_processors:
             feature_names.extend(processor.feature_names)
+        feature_names.extend(self.config_embedding_features)
         return feature_names
 
     @property

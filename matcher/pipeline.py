@@ -44,7 +44,7 @@ def main(
     test_dataset = prepare_features_df(test_pairs_filename, test_data_filename)
     config = Config()
     head_model = CatBoostScorer(HEAD_MODEL_FILENAME)
-    scores = head_model.get_scores(test_dataset, config.config_feature_names)
+    scores = head_model.get_scores(test_dataset, config.config_feature_names, config.config_embedding_features)
     test_dataset[SCORE_COLUMN] = scores
     test_dataset[output_columns].to_csv(submission_filename, index=False)
 

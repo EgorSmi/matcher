@@ -24,13 +24,13 @@ def train_head_model(
         train_features_df,
         eval_features_df,
         label_column=label_column,
-        feature_columns=feature_config.config_feature_names + feature_config.config_embedding_features,
+        feature_columns=feature_config.config_feature_names,
         embedding_feature_columns=feature_config.config_embedding_features,
         output_path=save_path,
     )
 
     train_pool = CatboostModel.get_pool(train_features_df, label_column,
-                                        feature_config.config_feature_names + feature_config.config_embedding_features,
+                                        feature_config.config_feature_names,
                                         feature_config.config_embedding_features)
     feature_importance = catboost_model.get_feature_importance(train_pool)
     print(f"Feature Importance: ", feature_importance)
