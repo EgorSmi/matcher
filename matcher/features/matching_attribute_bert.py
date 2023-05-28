@@ -88,8 +88,8 @@ class AttrMatchingBertFeature(FeatureProcessor):
         return df
 
     def compute_pair_feature(self, df: pd.DataFrame) -> pd.DataFrame:
-        feature_df = df[["attribute_string1", "attribute_string12"]]
-        dataset = NamingMatchingDataset(feature_df, self.tokenizer, "attribute_string1", "attribute_string12")
+        feature_df = df[["attribute_string1", "attribute_string2"]]
+        dataset = NamingMatchingDataset(feature_df, self.tokenizer, "attribute_string1", "attribute_string2")
         dataloader = DataLoader(dataset, batch_size=self.batch_size, collate_fn=Collator(self.tokenizer), shuffle=False)
         predicted_probas = self.scorer.predict_proba(dataloader)
         df["attribute_matching_bert_score"] = predicted_probas
