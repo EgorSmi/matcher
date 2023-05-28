@@ -9,6 +9,7 @@ ATTRIBUTE_DEBERTA_MATCHER = "deberta_v3_matching_common_train"
 RUS_TO_ENG_COLORS = "matcher/matcher/dict_data/rus_to_eng_colors.json"
 NAME_TO_HEX = "matcher/matcher/dict_data/name_to_hex_dict.json"
 NEEDED_ATTRS = "matcher/matcher/dict_data/needed_attrs_test_and_freq500.json"
+XLM_ROBERTA_NAME_MATCHER = "xlm-roberta-names"
 
 # columns
 SCORE_COLUMN = "target"
