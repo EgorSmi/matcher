@@ -26,18 +26,21 @@ class CatboostModel:
         self.model.save_model(output_path, format="cbm")
 
     @staticmethod
-    def get_pool(df: pd.DataFrame, label_column: str, feature_columns: List[str], group_column: str = None) -> Pool:
+    def get_pool(df: pd.DataFrame, label_column: str, feature_columns: List[str],
+                 embedding_feature_columns: List[str], group_column: str = None) -> Pool:
         if group_column:
             pool = Pool(
                 data=df[feature_columns],
                 label=df[label_column],
                 feature_names=list(feature_columns),
+                embedding_features=embedding_feature_columns,
                 group_id=df[group_column],
             )
         else:
             pool = Pool(
                 data=df[feature_columns],
                 label=df[label_column],
+                embedding_features=embedding_feature_columns,
                 feature_names=list(feature_columns),
             )
         return pool
@@ -48,11 +51,12 @@ class CatboostModel:
         eval_df: pd.DataFrame,
         label_column: str,
         feature_columns: List[str],
+        embedding_feature_columns: List[str],
         output_path: str,
         group_column: str = None,
     ):
-        train_pool = CatboostModel.get_pool(train_df, label_column, feature_columns, group_column)
-        eval_pool = CatboostModel.get_pool(eval_df, label_column, feature_columns, group_column)
+        train_pool = CatboostModel.get_pool(train_df, label_column, feature_columns, embedding_feature_columns, group_column)
+        eval_pool = CatboostModel.get_pool(eval_df, label_column, feature_columns, embedding_feature_columns, group_column)
         catboost_params = self.config.catboost_params(feature_names=train_pool.get_feature_names())
         self.model = CatBoost(catboost_params)
         self.model.fit(train_pool, eval_set=eval_pool, verbose_eval=True)
