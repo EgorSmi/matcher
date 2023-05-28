@@ -7,7 +7,8 @@ from .pics_cosine_features import PicsCosineFeatures
 from .color_features import SameColorFeatures
 from .matching_attribute_bert import AttrMatchingBertFeature
 from matcher.config import (
-    TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS
+    TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
+    XLM_ROBERTA_NAME_MATCHER,
 )
 
 
@@ -32,6 +33,7 @@ class Config:
         AttrMatchingBertFeature(
             ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
         ),
+        MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False)
     )
 
     @property
