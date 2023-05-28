@@ -13,7 +13,7 @@ class SimpleCategoriesFeatures(FeatureProcessor):
 
     @property
     def processor_name(self) -> str:
-        return "Simple categories features"
+        return "SimpleCategoriesFeatures"
 
     @staticmethod
     def get_cats_from_json(categories_json_string: str) -> Tuple[str, str]:
