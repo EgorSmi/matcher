@@ -6,7 +6,9 @@ from .simple_categories_features import SimpleCategoriesFeatures
 from .pics_cosine_features import PicsCosineFeatures
 from .color_features import SameColorFeatures
 from .matching_attribute_bert import AttrMatchingBertFeature
-from matcher.config import TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER
+from matcher.config import (
+    TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS
+)
 
 
 @dataclass
@@ -28,7 +30,7 @@ class Config:
             ["same_colorname", "same_hex", "same_rgb", "color_difference_ciede"]
         ),
         AttrMatchingBertFeature(
-            ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, "dict_data/needed_attrs_test_and_freq500.json",
+            ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
         ),
     )
 

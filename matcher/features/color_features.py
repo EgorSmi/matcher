@@ -7,6 +7,7 @@ import json
 from skimage.color import deltaE_ciede2000
 
 from .feature_processor import FeatureProcessor
+from matcher.config import RUS_TO_ENG_COLORS, NAME_TO_HEX
 
 
 def map_hex_to_rgb(el):
@@ -21,9 +22,9 @@ class SameColorFeatures(FeatureProcessor):
     def __init__(self, feature_names: List[str]):
         super().__init__(feature_names)
         self.stemmer = SnowballStemmer("russian")
-        with open("dict_data/rus_to_eng_colors.json") as f:
+        with open(RUS_TO_ENG_COLORS) as f:
             self.color_dict = json.load(f)
-        with open("dict_data/name_to_hex_dict.json") as f:
+        with open(NAME_TO_HEX) as f:
             self.name_to_hex_dict = json.load(f)
 
     @property
