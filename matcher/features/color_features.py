@@ -4,7 +4,9 @@ import re
 from matplotlib import colors
 from nltk.stem.snowball import SnowballStemmer
 import json
-from skimage.color import deltaE_ciede2000
+from colormath.color_objects import sRGBColor, LabColor
+from colormath.color_conversions import convert_color
+from colormath.color_diff import delta_e_cie2000
 
 from .feature_processor import FeatureProcessor
 from matcher.config import RUS_TO_ENG_COLORS, NAME_TO_HEX
@@ -16,6 +18,26 @@ def map_hex_to_rgb(el):
     elif isinstance(el, list):
         return [colors.hex2color(hex_c) for hex_c in el]
     return colors.hex2color(el)
+
+
+def color_difference(rgb1: list, rgb2: list):
+    def get_sRGBColor(rgb):
+        if type(rgb) == list:
+            mean_0 = sum([color[0] for color in rgb]) / len(rgb)
+            mean_1 = sum([color[1] for color in rgb]) / len(rgb)
+            mean_2 = sum([color[2] for color in rgb]) / len(rgb)
+            color_rgb = sRGBColor(mean_0, mean_1, mean_2)
+        elif type(rgb) == tuple:
+            color_rgb = sRGBColor(rgb[0], rgb[1], rgb[2])
+        else:
+            raise ValueError("Unknown color representation type")
+        return color_rgb
+
+    if (rgb1 is not None) and (rgb2 is not None):
+        color1 = convert_color(get_sRGBColor(rgb1), LabColor)
+        color2 = convert_color(get_sRGBColor(rgb2), LabColor)
+        return delta_e_cie2000(color1, color2)
+    return -1
 
 
 class SameColorFeatures(FeatureProcessor):
@@ -61,5 +83,5 @@ class SameColorFeatures(FeatureProcessor):
         df["same_colorname"] = (df["color_parsed1"] == df["color_parsed2"]).astype(int)
         df["same_hex"] = (df["color_hex1"] == df["color_hex2"]).astype(int)
         df["same_rgb"] = (df["color_rgb1"] == df["color_rgb2"]).astype(int)
-        df["color_difference_ciede"] = df.apply(lambda x: deltaE_ciede2000(x["color_rgb1"], x["color_rgb2"]), axis=1)
+        df["color_difference_ciede"] = df.apply(lambda x: color_difference(x["color_rgb1"], x["color_rgb2"]), axis=1)
         return df
