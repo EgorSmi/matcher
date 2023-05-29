@@ -5,5 +5,5 @@ export ENVIRONMENT_ARCHIVE=solution-env.tar.gz
 conda create -n ENVIRONMENT_NAME python=3.7
 
 conda activate ENVIRONMENT_NAME
-pip install .
+pip install -e .
 conda-pack -n ENVIRONMENT_NAME -o ENVIRONMENT_ARCHIVE
