@@ -1,16 +1,17 @@
 import logging.config
+import os
 
 # models
-FILES_FOLDER = "files/"
-TEXT_DEBERTA_MATCHER = f"{FILES_FOLDER}deberta_v3_matching_common_train"
-HEAD_MODEL_FILENAME = f"{FILES_FOLDER}head_catboost_model.cbm"
+FILES_FOLDER = "files"
+TEXT_DEBERTA_MATCHER = os.path.join(FILES_FOLDER, "deberta_v3_matching_common_train")
+HEAD_MODEL_FILENAME = os.path.join(FILES_FOLDER, "head_catboost_model.cbm")
 PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
-PICS_COSINE_BALL_TREE_PATH = f"{FILES_FOLDER}ball_tree.pkl"
-ATTRIBUTE_DEBERTA_MATCHER = f"{FILES_FOLDER}deberta_v3_matching_attributes_2" # "deberta_v3_matching_common_train"
-RUS_TO_ENG_COLORS = "matcher/matcher/dict_data/rus_to_eng_colors.json"
-NAME_TO_HEX = "matcher/matcher/dict_data/name_to_hex_dict.json"
-NEEDED_ATTRS = "matcher/matcher/dict_data/needed_attrs_test_and_freq500.json"
-XLM_ROBERTA_NAME_MATCHER = f"{FILES_FOLDER}xlm-roberta-names"
+PICS_COSINE_BALL_TREE_PATH = os.path.join(FILES_FOLDER, "ball_tree.pkl")
+ATTRIBUTE_DEBERTA_MATCHER = os.path.join(FILES_FOLDER, "deberta_v3_matching_attributes_2") # "deberta_v3_matching_common_train"
+RUS_TO_ENG_COLORS = os.path.join(FILES_FOLDER, "rus_to_eng_colors.json")
+NAME_TO_HEX = os.path.join(FILES_FOLDER, "name_to_hex_dict.json")
+NEEDED_ATTRS = os.path.join(FILES_FOLDER, "needed_attrs_test_and_freq500.json")
+XLM_ROBERTA_NAME_MATCHER = os.path.join(FILES_FOLDER, "xlm-roberta-names")
 
 # columns
 SCORE_COLUMN = "target"
