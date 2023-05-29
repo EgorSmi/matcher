@@ -8,6 +8,7 @@ from .color_features import SameColorFeatures
 from .bert64_embedding_features import Bert64EmbeddingFeatures
 from .resnet128_embedding_features import Resnet128EmbeddingFeatures
 from .matching_attribute_bert import AttrMatchingBertFeature
+from .attrs_iou_feature import AttrsIoUFeature
 from matcher.config import (
     TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
     XLM_ROBERTA_NAME_MATCHER,
@@ -35,7 +36,8 @@ class Config:
         AttrMatchingBertFeature(
             ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
         ),
-        MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False)
+        MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False),
+        AttrsIoUFeature(["attrs_iou"]),
     )
     embedding_features_processors: Tuple[FeatureProcessor] = (
         Bert64EmbeddingFeatures(
