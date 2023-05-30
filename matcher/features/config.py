@@ -20,6 +20,19 @@ from .aggregated_vector_features import AggregatedVectorFeatures
 class Config:
     text_matcher_filepath: str = TEXT_DEBERTA_MATCHER
     feature_processors: Tuple[FeatureProcessor] = (
+        MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False),
+        Resnet128EmbeddingFeatures(
+            ["main_pic_embeddings_resnet_v11", "main_pic_embeddings_resnet_v12"]
+        ),
+        Bert64EmbeddingFeatures(
+            ["name_bert_641", "name_bert_642"]
+        ),
+        SameColorFeatures(
+            ["same_colorname", "same_hex", "same_rgb", "color_difference_ciede"]
+        ),
+        AttrMatchingBertFeature(
+            ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
+        ),
         SimpleCategoriesFeatures(
             ["category_1_3", "category_1_4",
              "category_2_3", "category_2_4",
@@ -31,28 +44,16 @@ class Config:
         PicsCosineFeatures(
             ["pics_norm_sum", "pics_min"], PICS_COSINE_SIMILARITY_THRESHOLD
         ),
-        SameColorFeatures(
-            ["same_colorname", "same_hex", "same_rgb", "color_difference_ciede"]
-        ),
-        AttrMatchingBertFeature(
-            ["attribute_matching_bert_score"], ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
-        ),
-        MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False),
         AttrsIoUFeature(["attrs_iou"]),
-        Bert64EmbeddingFeatures(
-            ["name_bert_641", "name_bert_642"]
-        ),
-        Resnet128EmbeddingFeatures(
-            ["main_pic_embeddings_resnet_v11", "main_pic_embeddings_resnet_v12"]
-        )
     )
     embedding_features_processors: Tuple[FeatureProcessor] = (
+         Resnet128EmbeddingFeatures(
+             ["main_pic_embeddings_resnet_v11",
+              "main_pic_embeddings_resnet_v12"]
+         ),
         Bert64EmbeddingFeatures(
             ["name_bert_641", "name_bert_642"]
         ),
-        Resnet128EmbeddingFeatures(
-            ["main_pic_embeddings_resnet_v11", "main_pic_embeddings_resnet_v12"]
-        )
     )
 
     @property
