@@ -12,6 +12,7 @@ RUS_TO_ENG_COLORS = os.path.join(FILES_FOLDER, "rus_to_eng_colors.json")
 NAME_TO_HEX = os.path.join(FILES_FOLDER, "name_to_hex_dict.json")
 NEEDED_ATTRS = os.path.join(FILES_FOLDER, "needed_attrs_test_and_freq500.json")
 XLM_ROBERTA_NAME_MATCHER = os.path.join(FILES_FOLDER, "xlm-roberta-names")
+RANKED_LIST_PATH = os.path.join(FILES_FOLDER, "ranked_list.pkl")
 
 # columns
 SCORE_COLUMN = "target"
