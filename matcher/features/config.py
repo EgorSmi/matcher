@@ -13,6 +13,7 @@ from matcher.config import (
     TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
     XLM_ROBERTA_NAME_MATCHER,
 )
+from .aggregated_vector_features import AggregatedVectorFeatures
 
 
 @dataclass
