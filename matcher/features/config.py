@@ -38,6 +38,12 @@ class Config:
         ),
         MatchingBertFeature(["name_matching_xlmroberta_score"], XLM_ROBERTA_NAME_MATCHER, False),
         AttrsIoUFeature(["attrs_iou"]),
+        Bert64EmbeddingFeatures(
+            ["name_bert_641", "name_bert_642"]
+        ),
+        Resnet128EmbeddingFeatures(
+            ["main_pic_embeddings_resnet_v11", "main_pic_embeddings_resnet_v12"]
+        )
     )
     embedding_features_processors: Tuple[FeatureProcessor] = (
         Bert64EmbeddingFeatures(
@@ -53,7 +59,6 @@ class Config:
         feature_names = []
         for processor in self.feature_processors:
             feature_names.extend(processor.feature_names)
-        feature_names.extend(self.config_embedding_features)
         return feature_names
 
     @property
