@@ -4,7 +4,7 @@ import os
 # models
 FILES_FOLDER = "files"
 TEXT_DEBERTA_MATCHER = os.path.join(FILES_FOLDER, "deberta_v3_matching_common_train")
-HEAD_MODEL_FILENAME = os.path.join(FILES_FOLDER, "head_catboost_model.cbm")
+HEAD_MODEL_FILENAME = os.path.join(FILES_FOLDER, "catboost_model_features_wihout_vectors.cbm")
 PICS_COSINE_SIMILARITY_THRESHOLD = 0.01
 PICS_COSINE_BALL_TREE_PATH = os.path.join(FILES_FOLDER, "ball_tree.pkl")
 ATTRIBUTE_DEBERTA_MATCHER = os.path.join(FILES_FOLDER, "deberta_v3_matching_attributes_2") # "deberta_v3_matching_common_train"
