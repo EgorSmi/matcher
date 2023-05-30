@@ -9,6 +9,7 @@ from .bert64_embedding_features import Bert64EmbeddingFeatures
 from .resnet128_embedding_features import Resnet128EmbeddingFeatures
 from .matching_attribute_bert import AttrMatchingBertFeature
 from .attrs_iou_feature import AttrsIoUFeature
+from .longformer import LongformerFeature
 from matcher.config import (
     TEXT_DEBERTA_MATCHER, PICS_COSINE_SIMILARITY_THRESHOLD, ATTRIBUTE_DEBERTA_MATCHER, NEEDED_ATTRS,
     XLM_ROBERTA_NAME_MATCHER,
@@ -44,6 +45,9 @@ class Config:
         ),
         Resnet128EmbeddingFeatures(
             ["main_pic_embeddings_resnet_v11", "main_pic_embeddings_resnet_v12"]
+        ),
+        LongformerFeature(
+            ['longformer']
         )
     )
     embedding_features_processors: Tuple[FeatureProcessor] = (
