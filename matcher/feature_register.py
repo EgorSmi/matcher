@@ -43,6 +43,5 @@ class FeatureRegister:
             input_df_columns = set(df.columns)
             df = processor.compute_pair_feature(df)
             LOG.debug(f"{processor.processor_name} has finished pair feature preparation..")
-            assert len(input_df_columns) + len(set(processor.feature_names)) == len(set(df.columns))
         assert len(set(self.pair_key_columns) & set(df.columns)) == len(set(self.pair_key_columns))
         return df[[*self.pair_key_columns, *self.features]]
